@@ -43,18 +43,18 @@ def upload():
             print('pdf recieved')
             text = textExtractor.extractTextFromPDF(binaryData)
         
-        elif(extention == 'jpeg'):
-            print('jpeg recieved')
+        elif(extention == 'jpeg' or extention == 'jpg' or extention == 'png' or extention == 'webp' or extention == 'gif' or extention == 'bmp' or extention == 'tiff'):
+            print('image recieved')
             text = textExtractor.extractTextFormImage(binaryData)
         
         elif(extention == 'pptx'):
             print('pptx recieved')
             text = textExtractor.extractTextFromPPTX(binaryData)
+        
+        elif(extention == 'docx'):
+            print('docx recieved')
+            text = textExtractor.extractTextFromDOCX(binaryData)
 
-
-        # elif(extention == 'docx'):
-        #     print('docx recieved')
-        #     text = textExtractor.extractTextFromDOCX(binaryData)
             
         # saving text in respective course text files
         pathOfCourseContext = os.path.join(contextPath, courseId)

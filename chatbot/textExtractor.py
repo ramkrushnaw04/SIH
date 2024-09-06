@@ -99,3 +99,32 @@ def extractTextFromPPTX(pptBinary):
         return ['', '']
 
 
+
+
+def extractTextFromDOCX(docxBinary):
+    try:
+        doc = Document(io.BytesIO(docxBinary))
+        text = ''
+        imageText = ''
+        
+        # extract normal text
+        for para in doc.paragraphs:
+            text += para.text
+        
+        # extract text from images
+        for rel in doc.part.rels.values():
+            if "image" in rel.target_ref:
+                # Extract the image data as bytes
+                image_data = rel.target_part.blob
+                imageBlob = io.BytesIO(image_data)
+                image = Image.open(imageBlob)
+                textInImage = pytesseract.image_to_string(image)
+                imageText += textInImage
+        text = ""
+
+        return [formatAndCleanText(text), formatAndCleanText(imageText)]
+    
+
+    except Exception as error:
+        print('### error while extracting text from ppt:\n', error)
+        return ['', '']

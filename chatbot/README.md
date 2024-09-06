@@ -8,7 +8,7 @@
 - ### /upload
       {
             courseId: Integer,
-            file: ( pdf,  jpeg,  pptx )
+            file: ( jpeg,  jpg,  png,  gif,  bmp,  tiff,  webp,  pdf,  pptx )
       }
 
 - ### /ask
@@ -18,5 +18,11 @@
       }
       
 ## TODO
-- Add more formats for input files (doc, docx, ppt, png, jpg, wepb)
+- Add more formats for input files (doc, docx, ppt) - 
 - Send only necessary part of the context insted of the whole thing
+
+
+## UPDATES
+06/09/2024
+- Added support for jpg, png, webp, bmp, tiff, docx, gif  
+- No longer working on legacy formats doc and ppt as they are obsolete.
